@@ -171,7 +171,7 @@ public class ProductTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
-    @Test     // успешность удаления существующего элемента
+    @Test     //Удалить по id
     public void shouldDeleteOne() {
         repo.save(smartphone2);
 
@@ -183,17 +183,14 @@ public class ProductTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
-    @Test // NotFoundException при попытке удаления несуществующего элемента
+    @Test // Удалить не существующую книгу
     public void removeNotExistingProductFromArray() {
-
         repo.save(book1);
         repo.save(book2);
         repo.save(book3);
         repo.save(book4);
-
-        Assertions.assertThrows(NotFoundException.class, () -> {
+        Assertions.assertThrows(RuntimeException.class, () -> {
             repo.removeById(9);
         });
     }
-
 }
